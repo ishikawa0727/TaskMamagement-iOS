@@ -10,4 +10,19 @@ import UIKit
 
 class TicketDetailView: UIView {
 
+    
+    @IBOutlet weak var kindLabel: UILabel!
+    @IBOutlet weak var workerLabel: UILabel!
+    @IBOutlet weak var priorityLabel: UILabel!
+    @IBOutlet weak var deadlineLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
