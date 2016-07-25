@@ -17,12 +17,11 @@ class TicketDetailView: UIView {
     @IBOutlet weak var deadlineLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    class func instance() -> TicketDetailView {
+        return UINib(nibName: "TicketDetailView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! TicketDetailView
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setContentText(text: String) {
+        contentLabel.text = text
     }
-    
 }

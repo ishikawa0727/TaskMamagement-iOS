@@ -9,8 +9,21 @@
 import UIKit
 
 class TicketDetailViewController: UIViewController {
-    let mainView = TicketListView(frame: CGRectMake(0,0,0,0))
-    let model = TicketListModel()
+    var mainView :TicketDetailView?
+    let model = TicketDetailModel()
+    var ticketIndex : Int
+    
+
+    
+    init(index: Int?) {
+        self.ticketIndex = index!
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -23,8 +36,12 @@ class TicketDetailViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        view.addSubview(mainView.layout(CGRectMake(0,0,view.width, view.height)))
-        mainView.createButton.addTarget(self, action: #selector(TicketListViewController.createButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        mainView = TicketDetailView.instance()
+        AppDelegate.instance.headerHeight()
+        mainView!.frame = CGRectMake(0,AppDelegate.instance.headerHeight(),self.view.frame.width, self.view.frame.height - AppDelegate.instance.barsHeight())
+        let ticket = model.getTicketAtIndex(ticketIndex)
+        mainView?.setContentText(ticket.content)
+        view.addSubview(mainView!)
     }
     
     override func viewDidLoad() {
@@ -33,7 +50,6 @@ class TicketDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(false)
-        mainView.tableView.reloadData()
     }
 
 }

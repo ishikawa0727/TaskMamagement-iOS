@@ -22,6 +22,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     static let instance = UIApplication.sharedApplication().delegate as! AppDelegate
     
+    func headerHeight() -> CGFloat{
+        let height = statusBarHeight! + navBarHeight!
+        return height
+    }
+    
+    func barsHeight() -> CGFloat{
+        let height = statusBarHeight! + navBarHeight! + tabBarHeight!
+        return height
+    }
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         //タブバーコントローラをアプリケーションの起点とする

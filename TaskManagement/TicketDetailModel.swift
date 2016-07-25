@@ -9,5 +9,9 @@
 import UIKit
 
 class TicketDetailModel: NSObject {
+    
+    func getTicketAtIndex(index: Int) -> Ticket{
+        return Data.ticketList[index]
+    }
 
 }

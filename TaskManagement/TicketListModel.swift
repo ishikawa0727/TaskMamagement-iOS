@@ -11,6 +11,11 @@ import UIKit
 
 class TicketListModel : NSObject, UITableViewDataSource{
     
+    func getTicketAtIndex(index: Int) -> Ticket{
+        return Data.ticketList[index]
+    }
+    
+    
     //セルの個数を指定する
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Data.ticketList.count

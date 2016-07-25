@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol TicketListViewDelegate {
+     func didSelectRowAtIndex(index: Int)
+}
+
+
 class TicketListView: UIView, UITableViewDelegate {
      
      let tableView = UITableView()
      var scrollBeginingPoint: CGPoint!
      let createButton = UIButton()
+     var delegate: TicketListViewDelegate!
      
      override init(frame: CGRect) {
           super.init(frame: frame)
@@ -60,5 +66,9 @@ class TicketListView: UIView, UITableViewDelegate {
                })
           }
           scrollBeginingPoint = nil
+     }
+     
+     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+          delegate.didSelectRowAtIndex(indexPath.row)
      }
 }

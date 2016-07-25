@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TicketListViewController: UIViewController {
+class TicketListViewController: UIViewController, TicketListViewDelegate {
     
     let mainView = TicketListView(frame: CGRectMake(0,0,0,0))
     let model = TicketListModel()
@@ -22,6 +22,7 @@ class TicketListViewController: UIViewController {
         calculateHeights()
         title = "チケット一覧"
         mainView.tableView.dataSource = model
+        mainView.delegate = self
     }
     
     override func viewWillLayoutSubviews() {
@@ -41,6 +42,10 @@ class TicketListViewController: UIViewController {
     
     func createButtonTapped(button: UIButton) {
         navigationController?.pushViewController(TicketCreateViewController(), animated: true)
+    }
+    
+    func didSelectRowAtIndex(index: Int) {
+        navigationController?.pushViewController(TicketDetailViewController(index: index), animated: true)
     }
     
     func calculateHeights() {
